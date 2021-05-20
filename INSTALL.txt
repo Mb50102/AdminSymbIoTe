@@ -1,0 +1,14 @@
+
+
+deploy spring aplikacije na server:
+ 1) cmd-om se pozicioniramo u root projekta (admin)
+ 2) gradle build
+ 3) scp imeAplikacije.jar student@symbiote-lab.tel.fer.hr:./
+ 4) ssh student@symbiote-lab.tel.fer.hr
+ 5) sudo su - (i upisemo lozinku)
+ 6) cd /opt/symbioteCloud/admin
+ 7) cp /home/student/imeAplikacije.jar .
+ 8) docker build -t imeAplikacije .
+ 9) docker stack rm symbiote-app
+10) cd ..
+11) docker stack deploy -c docker-compose-swarm-L1.yml -c docker-compose-prod-swarm-L1.yml -c docker-compose-swarm-custom.yml symbiote-app
